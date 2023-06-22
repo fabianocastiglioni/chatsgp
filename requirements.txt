@@ -1,0 +1,4 @@
+streamlit==1.21.0
+openai==0.27.4
+langchain==0.0.168
+tiktoken==0.4.0
