@@ -1,6 +1,8 @@
 # CHATSGP: 
 
-CHATSGP é uma aplicação que utiliza o poder do GPT-TURBO para fornecer respostas para os documentos importantes da SGP do TRE-ES. Ela permite aos usuários fazer perguntas e receber respostas de diferentes bases de conhecimento.
+CHATSGP é um assistente virtual (chatbot) que utiliza o poder dos LLMs (Large Language Models) para consultar uma base de conhecimento de informações 
+importantes da Secretaria de Gestão de Pessoas do TRE-ES. 
+
 
 ## Funcionalidades
 
@@ -30,7 +32,7 @@ pip install -r requirements.txt
 - Informe sua chave API da OpenAI no arquivo secrets.toml ou como variável de ambiente.      
   OPENAI_API_KEY="chave"
 
-4. Execute o script indexing para criar um banco de dados de vetor:
+4. Execute o script ingesting para criar um banco de dados de vetor:
 
 ```
 python ingesting.py

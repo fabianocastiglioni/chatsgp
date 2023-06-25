@@ -43,28 +43,8 @@ hide_streamlit_style = """
                 }
                 </style>
                 """
+
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-st.markdown("""
-        <style>
-               .block-container {
-                    padding-top: 1rem;
-                    padding-bottom: 0rem;
-                    padding-left: 5rem;
-                    padding-right: 5rem;
-                }
-        </style>
-        """, unsafe_allow_html=True)
-
-
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 
 
 st.title("CHATSGP")
@@ -72,6 +52,8 @@ st.title("CHATSGP")
 #st.header("CHATSGP")
 
 st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
+
+st.write("Olá, sou o ChatSGP, um assistente virtual treinado para responder a dúvidas dos servidores do TRE-ES. Em que posso ajudá-lo?"); 
 
 # Initialize embeddings
 embeddings = OpenAIEmbeddings()
@@ -98,7 +80,6 @@ def construct_messages(history):
     return messages
 
 
-# Define handler functions for each category
 def tre_handler(query):
     print("Using TRE-ES handler...")
     # Get relevant documents from TRE's database
@@ -123,7 +104,7 @@ def generate_response():
     })
     
   
-    # Route the query based on category
+    
     new_message = tre_handler(st.session_state.prompt)
 
     # Construct messages from chat history
@@ -166,6 +147,6 @@ for message in st.session_state.history:
 # Take user input
 st.text_input("",
               key="prompt",
-              placeholder="Faça uma pergunta",
+              placeholder="Digite a sua pergunta",
               on_change=generate_response
               )

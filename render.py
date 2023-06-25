@@ -12,13 +12,28 @@ bot_msg_container_html_template = '''
 </div>
 '''
 
+
+'''
+bot claro
+https://www.svgrepo.com/show/310389/bot.svg
+
+bot escuro
+https://www.svgrepo.com/show/310556/bot.svg
+
+user claro
+https://www.svgrepo.com/show/513868/user.svg
+
+user escuro
+https://www.svgrepo.com/show/457826/user.svg
+'''
+
 user_msg_container_html_template = '''
 <div style='background-color: #FFFFFF; padding: 10px; border-radius: 5px; margin-bottom: 10px; display: flex'>
     <div style="width: 78%">
         $MSG
     </div>
     <div style="width: 20%; margin-left: auto; display: flex; justify-content: center;">
-        <img src="https://www.svgrepo.com/show/513868/user.svg" style="max-width: 50px; max-height: 50px; float: right; border-radius: 50%;">
+        <img src="https://www.svgrepo.com/show/457826/user.svg" style="max-width: 50px; max-height: 50px; float: right; border-radius: 50%;">
     </div>    
 </div>
 '''
