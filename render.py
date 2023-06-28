@@ -2,11 +2,11 @@ import streamlit as st
 
 
 bot_msg_container_html_template = '''
-<div style='background-color: #FFFFFF; padding: 10px; border-radius: 5px; margin-bottom: 10px; display: flex'>
-    <div style="width: 20%; display: flex; justify-content: center">
-        <img src="https://www.svgrepo.com/show/310556/bot.svg" style="max-height: 50px; max-width: 50px; border-radius: 50%;">
+<div style='display: flex; margin-bottom: 10px'>
+    <div style="display: flex; justify-content: center; width: 15%; padding:10px">
+        <img src="https://www.svgrepo.com/show/310556/bot.svg" style="max-height: 50px; max-width: 50px; border-radius: 50%">
     </div>
-    <div style="width: 80%;">
+    <div style="width: 85%; min-height: 70px; padding:10px; background-color: #FEFEFE; border: 0.5px solid #EFEFEF; border-radius: 5px">
         $MSG
     </div>
 </div>
@@ -28,12 +28,12 @@ https://www.svgrepo.com/show/457826/user.svg
 '''
 
 user_msg_container_html_template = '''
-<div style='background-color: #FFFFFF; padding: 10px; border-radius: 5px; margin-bottom: 10px; display: flex'>
-    <div style="width: 78%">
+<div style='display: flex; margin-bottom: 10px'>
+    <div style="width: 85%; min-height: 70px; padding:10px; background-color: #FEFEFE; border: 0.5px solid #EFEFEF; border-radius: 5px">
         $MSG
     </div>
-    <div style="width: 20%; margin-left: auto; display: flex; justify-content: center;">
-        <img src="https://www.svgrepo.com/show/457826/user.svg" style="max-width: 50px; max-height: 50px; float: right; border-radius: 50%;">
+    <div style="display: flex; margin-left: auto; justify-content: center; width: 15%; padding: 10px">
+        <img src="https://www.svgrepo.com/show/457826/user.svg" style="max-width: 50px; max-height: 50px; float: right; border-radius: 50%">
     </div>    
 </div>
 '''
