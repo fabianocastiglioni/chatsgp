@@ -4,6 +4,9 @@ from langchain.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
+import pytesseract
+
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
@@ -15,7 +18,7 @@ tre_loader = DirectoryLoader('./docs/tre/', glob="*.pdf", recursive=True)
 tre_docs = tre_loader.load()
 
 embeddings = OpenAIEmbeddings()
-text_splitter = CharacterTextSplitter(chunk_size=250, chunk_overlap=8)
+text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=100)
 
 # Split documents and generate embeddings
 tre_docs_split = text_splitter.split_documents(tre_docs)
