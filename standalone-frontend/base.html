@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
 <head>
     <meta charset="UTF-8">
@@ -23,8 +24,9 @@
                 <div></div>
             </div>
             <div class="chatbox__footer">
-                <input type="text" placeholder="Escreva uma mensagem...">
-                <button class="chatbox__send--footer send__button">Enviar</button>
+                <input type="text" placeholder="Escreva uma mensagem...">               
+                <button id="btnEnviar" class="chatbox__send--footer send__button">Enviar</button>
+                <div id="spinner"><span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
             </div>
         </div>
         <div class="chatbox__button">
@@ -33,7 +35,17 @@
     </div>
 </div>
 
+
+
     <script src="./app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
+
+    <script>
+        $(document).ready(function() {
+            $("#spinner").hide();
+        });
+    </script>
 
 </body>
 </html>

@@ -37,9 +37,16 @@ class Chatbox {
     }
 
     onSendButton(chatbox) {
+
+        $('#btnEnviar').prop('disabled', true)
+        $("#spinner").show();
+
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
         if (text1 === "") {
+            
+            $('#btnEnviar').prop('disabled', false)
+            $("#spinner").hide();
             return;
         }
 
@@ -60,11 +67,15 @@ class Chatbox {
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
+            $('#btnEnviar').prop('disabled', false)
+            $("#spinner").hide();
 
         }).catch((error) => {
             console.error('Error:', error);
             this.updateChatText(chatbox)
             textField.value = ''
+            $('#btnEnviar').prop('disabled', false)
+            $("#spinner").hide();
           });
     }
 
