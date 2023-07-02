@@ -28,8 +28,8 @@ pip install -r requirements.txt
 3. Configure suas credenciais:
 
 - Acesse o website OpenAI e obtenha uma chave de API.
-- Crie um arquivo chamado "secrets.toml" na pasta .streamlit.
-- Informe sua chave API da OpenAI no arquivo secrets.toml ou como variável de ambiente.      
+- Crie um arquivo chamado ".env"
+- Informe sua chave API da OpenAI no arquivo.      
   OPENAI_API_KEY="chave"
 
 4. Execute o script ingesting para criar um banco de dados de vetor:

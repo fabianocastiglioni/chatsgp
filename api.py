@@ -17,9 +17,6 @@ CORS(app)
 
 load_dotenv()
 
-# Define the folder for storing database
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
-openai.api_key = OPENAI_API_KEY
 embeddings = OpenAIEmbeddings()
 db = Chroma(persist_directory=os.path.join('db', 'tre'), embedding_function=embeddings)
 retriever = db.as_retriever(search_kwargs={"k": 3})

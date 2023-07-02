@@ -6,9 +6,9 @@ from utils import ensure_fit_tokens, get_page_contents
 from prompts import human_template, system_message
 from render import user_msg_container_html_template, bot_msg_container_html_template
 import openai
+from dotenv import load_dotenv
 
-# Set OpenAI API key
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+load_dotenv()
 
 st.set_page_config("CHATSGP")
 

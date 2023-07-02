@@ -5,10 +5,13 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 import pytesseract
+from dotenv import load_dotenv
+
+
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+load_dotenv()
 
 # Set persist directory
 persist_directory = 'db'
