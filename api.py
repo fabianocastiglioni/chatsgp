@@ -50,17 +50,30 @@ def get_response(query,history):
     print(qa.run(query))
 
     '''
-    print("relevant docs:")
-    print(relevant_docs)
+    #print("relevant docs:")
+    #print(relevant_docs)
 
     # Busca o contexto dos documentos relevantes
     context = get_page_contents(relevant_docs)
 
-    # Prepara o prompt com o contexto
-    query_with_context = human_template.format(query=query, context=context)
+    #print("contexto")
+    #print(context)
+    '''
+    if (len(context)>0):
+        query_prompt = human_template_context.format(query=query, context=context)
+        
 
-    # Monta mensagem com contexto
-    new_message =  {"role": "user", "content": query_with_context}
+    else:
+        query_prompt = human_template.format(query=query, context=context)
+    '''
+
+    query_prompt = human_template.format(query=query, context=context)
+    
+    #print("query_prompt:")
+    #print(query_prompt)
+
+    new_message =  {"role": "user", "content": query_prompt}
+  
 
     # Constrói as mensagens considerando todo o histórico da conversa
     messages = construct_messages(history)
@@ -68,11 +81,16 @@ def get_response(query,history):
     # Adiciona a nova mensagem à lista de mensagens
     messages.append(new_message)
 
-    print(messages)
+    print("\nHistory:\n")
+    print(history)
 
+    #print(messages)
+
+    #https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/chatgpt?pivots=programming-language-chat-completions
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=messages
+        messages=messages,
+        temperature=.7
     )
 
     assistant_message = response['choices'][0]['message']['content']

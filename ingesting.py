@@ -18,7 +18,9 @@ tre_loader = DirectoryLoader('./docs/tre/', glob="*.pdf", recursive=True)
 tre_docs = tre_loader.load()
 
 embeddings = OpenAIEmbeddings()
-text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+
+#https://www.pinecone.io/learn/chunking-strategies
+text_splitter = CharacterTextSplitter(chunk_size=512, chunk_overlap=50)
 
 # Split documents and generate embeddings
 tre_docs_split = text_splitter.split_documents(tre_docs)
