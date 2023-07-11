@@ -53,7 +53,7 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        fetch('http://127.0.0.1:5000/chat', {
+        fetch('http://localhost:5000/chat', {
             method: 'POST',
             body: JSON.stringify({ message: text1, messages: this.messages }),
             mode: 'cors',
@@ -63,7 +63,7 @@ class Chatbox {
           })
           .then(r => r.json())
           .then(r => {
-            let msg2 = { name: "Sam", message: r.answer };
+            let msg2 = { name: "Bel", message: r.answer };
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
@@ -82,7 +82,7 @@ class Chatbox {
     updateChatText(chatbox) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Sam")
+            if (item.name === "Bel")
             {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }

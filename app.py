@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-st.set_page_config("CHATSGP")
+#st.set_page_config("CHATSGP")
 
 hide_streamlit_style = """
                 <style>
