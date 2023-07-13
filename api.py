@@ -10,6 +10,8 @@ from langchain.embeddings import OpenAIEmbeddings
 from novo_prompt import system_message,human_message
 from dotenv import load_dotenv
 from langchain.document_loaders import DirectoryLoader
+import json
+import re 
 
 #from langchain.chains import RetrievalQA
 #from langchain.llms import OpenAI
@@ -76,6 +78,11 @@ def getChatResponse():
     message = {"answer": response}
     return jsonify(message)
 
+
+def pesquisaLocalVotacao():
+    print('Pesquisando local de votação...')
+    return "Local 1010- Fernando Duarte Rabelo"
+
 def get_response(query,history):
     global _vectorStore
     # Busca os documentos relevantes(mais similares) à pergunta
@@ -117,6 +124,32 @@ def get_response(query,history):
 
     print(f'\nResposta:\n {assistant_message}')
 
+    if("pesquisa_local_votacao" in assistant_message):
+
+        print('intenção do usuário foi pesquisar local de votação')
+        
+        regex = r"\[(.*?)\]"
+        matches = re.finditer(regex, assistant_message, re.MULTILINE | re.DOTALL)
+
+        data = None
+
+        for matchNum, match in enumerate(matches):
+            for groupNum in range(0, len(match.groups())):
+                print (match.group(1))
+                data = match.group(1)
+                break
+        
+        if(data):
+            split_data = data.split(',')
+            nome = split_data[1].split(':')[1]
+            nome_mae = split_data[2].split(':')[1]
+            data_nascimento = split_data[3].split(':')[1]
+            local_votacao = pesquisaLocalVotacao()
+            assistant_message = "Seu local de votação é:\n {local_votacao}".format(local_votacao = local_votacao)
+        else:
+            assistant_message = "Não foi possível localizar o seu local de votação"
+        
+
     return assistant_message
 
 # Construct messages from chat history
@@ -142,7 +175,7 @@ def get_page_contents(docs):
     for i, doc in enumerate(docs, 1):
         #contents += f"Document {doc.metadata['source']}:\n{doc.page_content}\n\n"
         contents += f"Document:\n{doc.page_content}\n\n"
-    return contents
+    return contents   
 
 build_vectorstore()
 
