@@ -79,8 +79,11 @@ def getChatResponse():
     return jsonify(message)
 
 
-def pesquisaLocalVotacao():
+def pesquisaLocalVotacao(nome,nome_mae,data_nascimento):
     print('Pesquisando local de votação...')
+    print(nome)
+    print(nome_mae)
+    print(data_nascimento)
     return "Local 1010- Fernando Duarte Rabelo"
 
 def get_response(query,history):
@@ -122,13 +125,13 @@ def get_response(query,history):
 
     assistant_message = response['choices'][0]['message']['content']
 
-    print(f'\nResposta:\n {assistant_message}')
+    print(f'\nResposta Original do assistente:\n {assistant_message}')
 
     if("pesquisa_local_votacao" in assistant_message):
 
         print('intenção do usuário foi pesquisar local de votação')
         
-        regex = r"\[(.*?)\]"
+        regex = r"\#(.*?)\#"
         matches = re.finditer(regex, assistant_message, re.MULTILINE | re.DOTALL)
 
         data = None
@@ -141,13 +144,25 @@ def get_response(query,history):
         
         if(data):
             split_data = data.split(',')
-            nome = split_data[1].split(':')[1]
+            nome_completo = split_data[1].split(':')[1]
+            
+            split_nome_completo = nome_completo.split(' ')
+            if (len(split_nome_completo)>1):
+                primeiro_nome = split_nome_completo[0]
+            else:
+                primeiro_nome = nome_completo
+                
+
             nome_mae = split_data[2].split(':')[1]
             data_nascimento = split_data[3].split(':')[1]
-            local_votacao = pesquisaLocalVotacao()
-            assistant_message = "Seu local de votação é:\n {local_votacao}".format(local_votacao = local_votacao)
+            local_votacao = pesquisaLocalVotacao(nome_completo,nome_mae,data_nascimento)
+            assistant_message = "Obrigada por confirmar,{primeiro_nome}}.\n Com base nas informações fornecidas, irei realizar uma pesquisa para encontrar o seu local de votação. \nPor favor, aguarde um momento. [Realizando a pesquisa...] \nEncontrei o seu local de votação:\n {local_votacao}".format(primeiro_nome=primeiro_nome,local_votacao=local_votacao)
+            #assistant_message = "Seu local de votação é:\n {local_votacao}".format(local_votacao = local_votacao)
         else:
             assistant_message = "Não foi possível localizar o seu local de votação"
+
+        
+        print(f'\nResposta da pesquisa de local de votação:\n {assistant_message}')
         
 
     return assistant_message
